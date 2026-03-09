@@ -11,11 +11,11 @@
 
         <div class="salon_menu">
             <ul>
-
-                @guest
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="../review/index.php">Reviews</a></li>
                     <li><a href="../contact-form/index.php">問い合わせ</a></li>
+                @guest
+
                     <li><a href="{{ url('/login') }}">ログイン</a></li>
                 @endguest
                 @auth
@@ -27,6 +27,7 @@
 
                             <div class="dropdown-menu" style="display: none;">
                                 <a href="{{ route('dashboard') }}" wire:navigate>プロファイル</a>
+                                <a href="{{ url('/admin/posts')}}">掲示板管理</a>
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -36,9 +37,7 @@
 
                         </div>
                     @elseif(auth()->user()->is_admin === 0)
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="../review/index.php">Reviews</a></li>
-                        <li><a href="../contact-form/index.php">問い合わせ</a></li>
+
                         <div class="dropdown-box">
                             <button type="button" class="dropdown-toggle">
                                 {{ auth()->user()->name_sei }} {{ auth()->user()->name_mei }}さん
@@ -46,6 +45,7 @@
 
                             <div class="dropdown-menu" style="display: none;">
                                 <a href="{{ route('dashboard') }}" wire:navigate>プロファイル</a>
+                                
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
