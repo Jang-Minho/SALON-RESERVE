@@ -13,11 +13,13 @@ class PostsTable
     {
         return $table
             ->columns([
-                //
+
+
             ])
             ->filters([
                 //
             ])
+
             ->recordActions([
                 EditAction::make(),
             ])

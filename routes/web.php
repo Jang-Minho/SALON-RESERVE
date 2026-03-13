@@ -3,8 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
-Route::view('/', 'home')->name('home');
+
+Route::get('/', function(){
+    $posts = Post::latest()->paginate(10);
+        return view('home',[
+        'posts' => $posts
+    ]);
+})->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -24,3 +31,5 @@ Route::post('/logout',function(Request $request){
 
     return redirect('/');
 })->name('logout');
+
+Route::livewire('/post-view/{id}', 'post-view');

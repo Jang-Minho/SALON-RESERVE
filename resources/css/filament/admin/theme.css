@@ -2,3 +2,7 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+
+.body-rich-editor .ProseMirror {
+    min-height: 200px;
+}

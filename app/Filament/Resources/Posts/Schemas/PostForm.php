@@ -6,7 +6,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\FileUpload;
-
 use Filament\Schemas\Schema;
 
 class PostForm
@@ -24,6 +23,15 @@ class PostForm
                 RichEditor::make('body')
                     ->label('本文')
                     ->required()
+                    ->columnSpan(2)
+                    ->extraAttributes([
+                        'class' => 'body-rich-editor'
+                    ]),
+                FileUpload::make('attachment_path')
+                    ->label('添付ファイル')
+                    ->directory('posts')
+                    ->disk('public'),
+                    
             ]);
     }
 }
